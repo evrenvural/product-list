@@ -2,20 +2,20 @@ import { all, call, put, takeLatest } from "redux-saga/effects";
 import { REQUEST, SUCCESS, FAILURE } from "../../utils/reduxUtils";
 import ItemActionTypes from "./item.types";
 import * as itemActions from "./item.actions";
+import ItemService from "./item.services";
 
 function* getItems() {
   try {
-    // const {
-    //   data: { data, error }
-    // } = yield call(PlayedSongHistoryService.getRecentlyPlayed, userId)
+    const response = yield call(ItemService.get);
+    console.log({ response });
     // if (data) {
-    //   yield put(homeActions.GetRecentlyPlayedSongs.success(data))
+    //   yield put(itemActions.GetItems.success(data));
     // } else if (error) {
-    //   yield put(homeActions.GetRecentlyPlayedSongs.failure(error))
+    //   yield put(itemActions.GetItems.failure(error));
     // }
   } catch (error) {
-    // console.log({ error })
-    // yield put(homeActions.GetRecentlyPlayedSongs.failure(error))
+    console.log({ error });
+    yield put(itemActions.GetItems.failure(error));
   }
 }
 
