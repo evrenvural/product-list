@@ -7,7 +7,9 @@ import * as style from "./Home.style";
 import * as itemActions from "../redux/item/item.actions";
 import { useDispatch } from "react-redux";
 import RadioFilter from "../components/RadioFilter/RadioFilter";
+import CheckboxFilter from "../components/CheckboxFilter/CheckboxFilter";
 import { Container, Grid } from "@mantine/core";
+import { GLOBAL_STYLE } from "../utils/styleUtils";
 
 function Home() {
   const dispatch = useDispatch();
@@ -21,6 +23,10 @@ function Home() {
       <Grid>
         <Grid.Col span={3}>
           <RadioFilter />
+          <div css={GLOBAL_STYLE.mb(24)} />
+          <CheckboxFilter />
+          <div css={GLOBAL_STYLE.mb(24)} />
+          <CheckboxFilter />
         </Grid.Col>
         <Grid.Col span={6}>2</Grid.Col>
         <Grid.Col span={3}>3</Grid.Col>

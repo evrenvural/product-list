@@ -2,7 +2,7 @@ import { css } from "@emotion/react";
 import * as utils from "../../utils/styleUtils";
 
 export const wrapper = css`
-  // background-color: ${utils.COLORS.blue};
+  // height: 274px;
 `;
 
 export const title = css`
@@ -17,9 +17,19 @@ export const filterContainer = css`
   padding: 24px;
 `;
 
-export const radioInput = css`
-  .mantine-Radio-label {
+export const input = css`
+  color: ${utils.COLORS.moreLightGray};
+`;
+
+export const checkboxContainer = css`
+  overflow: scroll;
+  max-height: 142px;
+`;
+
+export const checkboxInput = css`
+  .mantine-Checkbox-label {
     color: ${utils.COLORS.black};
     font-family: Open Sans;
+    font-size: 16px;
   }
 `;
