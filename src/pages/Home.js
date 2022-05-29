@@ -23,17 +23,17 @@ function Home() {
   return (
     <Container size="xl" css={style.container}>
       <Grid>
-        <Grid.Col span={3}>
+        <Grid.Col md={12} lg={3}>
           <RadioFilter />
           <div css={GLOBAL_STYLE.mb(24)} />
           <CheckboxFilter />
           <div css={GLOBAL_STYLE.mb(24)} />
           <CheckboxFilter />
         </Grid.Col>
-        <Grid.Col span={6}>
+        <Grid.Col md={12} lg={6}>
           <ProductList />
         </Grid.Col>
-        <Grid.Col span={3}>
+        <Grid.Col md={12} lg={3}>
           <SelectItem />
         </Grid.Col>
       </Grid>

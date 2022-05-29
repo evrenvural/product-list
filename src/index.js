@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./store";
 import { Provider } from "react-redux";
 import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -13,6 +14,7 @@ root.render(
     <Provider store={store}>
       <Navbar />
       <Home />
+      <Footer />
     </Provider>
   </React.StrictMode>
 );

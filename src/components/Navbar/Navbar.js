@@ -10,7 +10,7 @@ import { Container } from "@mantine/core";
 function Navbar() {
   return (
     <div css={style.wrapper}>
-      <Container size="xl" css={style.container}>
+      <Container size="lg" css={style.container}>
         <div css={style.bag}>
           <img css={style.bagSvg} src={basketSvg} />
           <label css={style.bagTitle}>₺ 39,97</label>

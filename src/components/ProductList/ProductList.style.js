@@ -9,3 +9,11 @@ export const title = css`
   color ${utils.COLORS.grayBold};
   font-size: 20px;
 `;
+
+export const list = css`
+  padding: 20px;
+  margin-left: 1px;
+  margin-right: 1px;
+  margin-top: 26px;
+  background-color: ${utils.COLORS.white};
+`;
