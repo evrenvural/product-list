@@ -4,11 +4,13 @@ export const COLORS = {
   blue: "#1976D2",
   white: "#FFFFFF",
   gray: "#697488",
+  grayBold: "#6F6F6F",
   lightGray: "#E5E5E5",
   moreLightGray: "E0E0E0",
   black: "#525252",
   lightBlack: "#F4F4F4",
   boldBlack: "#191919",
+  lightPink: "#F2F0FD",
 };
 
 export const FONT_WEIGHT = {
@@ -27,5 +29,8 @@ export const GLOBAL_STYLE = {
   `,
   ml: (size) => css`
     margin-left: ${size}px;
+  `,
+  bg: (color) => css`
+    background-color: ${color};
   `,
 };

@@ -3,7 +3,7 @@ import * as utils from "../../utils/styleUtils";
 
 export const wrapper = css`
   padding: 10px 22px;
-  border: 5px solid ${utils.COLORS.blue};
+  border: 8px solid ${utils.COLORS.blue};
   background-color: ${utils.COLORS.white};
 `;
 
