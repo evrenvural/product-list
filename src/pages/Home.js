@@ -8,6 +8,7 @@ import * as itemActions from "../redux/item/item.actions";
 import { useDispatch } from "react-redux";
 import RadioFilter from "../components/RadioFilter/RadioFilter";
 import CheckboxFilter from "../components/CheckboxFilter/CheckboxFilter";
+import SelectItem from "../components/SelectItem/SelectItem";
 import { Container, Grid } from "@mantine/core";
 import { GLOBAL_STYLE } from "../utils/styleUtils";
 
@@ -29,7 +30,9 @@ function Home() {
           <CheckboxFilter />
         </Grid.Col>
         <Grid.Col span={6}>2</Grid.Col>
-        <Grid.Col span={3}>3</Grid.Col>
+        <Grid.Col span={3}>
+          <SelectItem />
+        </Grid.Col>
       </Grid>
     </Container>
   );
