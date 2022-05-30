@@ -1,3 +1,3 @@
-const URL = "https://my-json-server.typicode.com/evrenvural/product-list/";
+const URL = "http://localhost:3000/";
 
 export default URL;

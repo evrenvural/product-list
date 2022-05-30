@@ -2,7 +2,10 @@ import { css } from "@emotion/react";
 import * as utils from "../../utils/styleUtils";
 
 export const wrapper = css`
-  // background-color: ${utils.COLORS.blue};
+  .mantine-RadioGroup-label {
+    color: ${utils.COLORS.black};
+    font-family: Open Sans;
+  }
 `;
 
 export const title = css`
@@ -15,11 +18,4 @@ export const filterContainer = css`
   margin-top: 12px;
   background-color: ${utils.COLORS.white};
   padding: 24px;
-`;
-
-export const radioInput = css`
-  .mantine-Radio-label {
-    color: ${utils.COLORS.black};
-    font-family: Open Sans;
-  }
 `;

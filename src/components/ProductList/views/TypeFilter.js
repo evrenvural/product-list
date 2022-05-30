@@ -5,11 +5,21 @@ import React from "react";
 import { jsx } from "@emotion/react";
 import * as style from "./TypeFilter.style";
 
-function TypeFilter() {
+function TypeFilter({ onChange, value }) {
   return (
     <div css={style.wrapper}>
-      <div css={[style.button, style.activeButton]}>mug</div>
-      <div css={style.button}>shirt</div>
+      <div
+        css={[style.button, value === "mug" && style.activeButton]}
+        onClick={() => onChange("mug")}
+      >
+        mug
+      </div>
+      <div
+        css={[style.button, value === "shirt" && style.activeButton]}
+        onClick={() => onChange("shirt")}
+      >
+        shirt
+      </div>
     </div>
   );
 }

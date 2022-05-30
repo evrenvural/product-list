@@ -8,42 +8,32 @@ import TypeFilter from "./views/TypeFilter";
 import Pagination from "./views/Pagination";
 import Card from "./views/Card";
 import { Container, Grid } from "@mantine/core";
+import _ from "lodash";
 
-function ProductList() {
+function ProductList({
+  list,
+  totalListLength,
+  onPageChanged,
+  page,
+  onTypeFilterChange,
+  typeFilterValue,
+}) {
   return (
     <div css={style.wrapper}>
       <label css={style.title}>Products</label>
-      <TypeFilter />
+      <TypeFilter onChange={onTypeFilterChange} value={typeFilterValue} />
       <Grid css={style.list}>
-        <Grid.Col xs={6} sm={4} md={3}>
-          <Card />
-        </Grid.Col>
-        <Grid.Col xs={6} sm={4} md={3}>
-          <Card />
-        </Grid.Col>
-        <Grid.Col xs={6} sm={4} md={3}>
-          <Card />
-        </Grid.Col>
-        <Grid.Col xs={6} sm={4} md={3}>
-          <Card />
-        </Grid.Col>
-        <Grid.Col xs={6} sm={4} md={3}>
-          <Card />
-        </Grid.Col>
-        <Grid.Col xs={6} sm={4} md={3}>
-          <Card />
-        </Grid.Col>
-        <Grid.Col xs={6} sm={4} md={3}>
-          <Card />
-        </Grid.Col>
-        <Grid.Col xs={6} sm={4} md={3}>
-          <Card />
-        </Grid.Col>
-        <Grid.Col xs={6} sm={4} md={3}>
-          <Card />
-        </Grid.Col>
+        {_.map(list, (item, index) => (
+          <Grid.Col key={index} xs={6} sm={4} md={3}>
+            <Card price={item.price} name={item.name} />
+          </Grid.Col>
+        ))}
       </Grid>
-      <Pagination />
+      <Pagination
+        onPageChanged={onPageChanged}
+        page={page}
+        totalCount={totalListLength}
+      />
     </div>
   );
 }
