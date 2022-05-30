@@ -5,17 +5,19 @@ import React from "react";
 import { jsx } from "@emotion/react";
 import * as style from "./Card.style";
 
-function Card({ price, name }) {
+function Card({ item, addButtonClicked }) {
   return (
     <div css={style.wrapper}>
       <>
         <div css={style.imageContainer}>
           <div css={style.imagePlaceHolder}></div>
         </div>
-        <div css={style.price}>₺ {price}</div>
-        <div css={style.title}>{name}</div>
+        <div css={style.price}>₺ {item.price}</div>
+        <div css={style.title}>{item.name}</div>
       </>
-      <div css={style.button}>Add</div>
+      <div css={style.button} onClick={() => addButtonClicked(item)}>
+        Add
+      </div>
     </div>
   );
 }

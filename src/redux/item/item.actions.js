@@ -29,3 +29,33 @@ export const ChangeFilter = {
     payload: error,
   }),
 };
+
+export const AddItem = {
+  request: (item) => ({
+    type: REQUEST(ItemActionTypes.ADD_ITEM),
+    payload: { item },
+  }),
+  success: (item) => ({
+    type: SUCCESS(ItemActionTypes.ADD_ITEM),
+    payload: { item },
+  }),
+  failure: (error) => ({
+    type: FAILURE(ItemActionTypes.ADD_ITEM),
+    payload: error,
+  }),
+};
+
+export const DecreaseItem = {
+  request: (item) => ({
+    type: REQUEST(ItemActionTypes.DECREASE_ITEM),
+    payload: { item },
+  }),
+  success: (item) => ({
+    type: SUCCESS(ItemActionTypes.DECREASE_ITEM),
+    payload: { item },
+  }),
+  failure: (error) => ({
+    type: FAILURE(ItemActionTypes.DECREASE_ITEM),
+    payload: error,
+  }),
+};

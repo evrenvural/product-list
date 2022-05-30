@@ -1,5 +1,6 @@
 import { REQUEST, SUCCESS, FAILURE } from "../../utils/reduxUtils";
 import ItemActionTypes from "./item.types";
+import _ from "lodash";
 
 const InitialState = {
   items: [],
@@ -11,6 +12,8 @@ const InitialState = {
     checkedBrands: [],
     checkedTags: [],
   },
+  selectedItems: [],
+  selectedTotalPrice: 0,
   error: null,
   isLoading: false,
 };
@@ -50,6 +53,71 @@ export default function itemReducer(state = InitialState, action = {}) {
         error: null,
       };
     case FAILURE(ItemActionTypes.CHANGE_FILTER):
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case REQUEST(ItemActionTypes.ADD_ITEM):
+      return {
+        ...state,
+        error: null,
+      };
+    case SUCCESS(ItemActionTypes.ADD_ITEM):
+      const newSelectedItems = [...state.selectedItems];
+      const item = _.find(
+        state.selectedItems,
+        (item) => item.data.name === action.payload.item.name
+      );
+      if (item) {
+        item.count += 1;
+        state.selectedTotalPrice += item.data.price * item.count;
+      } else {
+        newSelectedItems.push({
+          data: action.payload.item,
+          count: 1,
+        });
+        state.selectedTotalPrice += action.payload.item.price;
+      }
+      return {
+        ...state,
+        selectedItems: newSelectedItems,
+        error: null,
+      };
+    case FAILURE(ItemActionTypes.ADD_ITEM):
+      return {
+        ...state,
+        error: action.payload,
+      };
+
+    case REQUEST(ItemActionTypes.DECREASE_ITEM):
+      return {
+        ...state,
+        error: null,
+      };
+    case SUCCESS(ItemActionTypes.DECREASE_ITEM):
+      let newItems = [...state.selectedItems];
+      const selectedItem = _.find(
+        state.selectedItems,
+        (item) => item.data.name === action.payload.item.name
+      );
+
+      if (selectedItem) {
+        selectedItem.count--;
+        state.selectedTotalPrice -= action.payload.item.price;
+        if (selectedItem.count <= 0) {
+          newItems = _.remove(
+            state.selectedItems,
+            ({ data }) => data.name !== selectedItem.data.name
+          );
+        }
+      }
+      return {
+        ...state,
+        selectedItems: newItems,
+        error: null,
+      };
+    case FAILURE(ItemActionTypes.DECREASE_ITEM):
       return {
         ...state,
         error: action.payload,

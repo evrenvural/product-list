@@ -22,6 +22,10 @@ function Home() {
   const items = useSelector((state) => state.item.items);
   const totalItemCount = useSelector((state) => state.item.totalItemCount);
   const filter = useSelector((state) => state.item.filter);
+  const selectedItems = useSelector((state) => state.item.selectedItems);
+  const selectedTotalPrice = useSelector(
+    (state) => state.item.selectedTotalPrice
+  );
 
   const brandOptions = _.map(COMPANIES, (company) => ({
     label: company.name,
@@ -80,10 +84,22 @@ function Home() {
               dispatch(itemActions.ChangeFilter.request({ type: selectedType }))
             }
             typeFilterValue={filter.type}
+            addButtonClicked={(item) =>
+              dispatch(itemActions.AddItem.request(item))
+            }
           />
         </Grid.Col>
         <Grid.Col md={12} lg={3}>
-          <SelectItem />
+          <SelectItem
+            selectedItems={selectedItems}
+            decreaseButtonClicked={(item) =>
+              dispatch(itemActions.DecreaseItem.request(item))
+            }
+            increaseButtonClicked={(item) =>
+              dispatch(itemActions.AddItem.request(item))
+            }
+            totalPrice={selectedTotalPrice}
+          />
         </Grid.Col>
       </Grid>
     </Container>

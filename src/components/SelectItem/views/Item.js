@@ -5,23 +5,34 @@ import React from "react";
 import { jsx } from "@emotion/react";
 import * as style from "./Item.style";
 import { GLOBAL_STYLE } from "../../../utils/styleUtils";
+import _ from "lodash";
 
-function Item() {
+function Item({ item, increaseButtonClicked, decreaseButtonClicked }) {
   return (
     <>
       <div css={style.item}>
         <div>
-          <div css={style.title}>Example Product</div>
-          <label css={style.price}>₺14,99</label>
+          <div css={style.title}>{_.get(item, "data.name")}</div>
+          <label css={style.price}>₺{_.get(item, "data.price")}</label>
         </div>
         <div css={style.button}>
-          <label css={style.upperAndLower}>-</label>
+          <label
+            onClick={() => decreaseButtonClicked(_.get(item, "data"))}
+            css={style.upperAndLower}
+          >
+            -
+          </label>
           <span css={GLOBAL_STYLE.mr(12)} />
           <span css={style.count}>
-            <label>1</label>
+            <label>{_.get(item, "count")}</label>
           </span>
           <span css={GLOBAL_STYLE.ml(12)} />
-          <label css={style.upperAndLower}>+</label>
+          <label
+            onClick={() => increaseButtonClicked(_.get(item, "data"))}
+            css={style.upperAndLower}
+          >
+            +
+          </label>
         </div>
       </div>
       <div css={GLOBAL_STYLE.mt(18)} />

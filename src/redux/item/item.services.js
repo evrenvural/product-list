@@ -3,26 +3,19 @@ import axios from "../../configs/axios";
 import BaseService from "../../configs/BaseService";
 class ItemService extends BaseService {
   get = (filter) => {
-    let url = `${this.URL}/?`;
+    const [sort, order] = _.split(filter.sortAndOrder, ",");
 
-    if (filter.type) url += `itemType=${filter.type}&`;
-    if (filter.sortAndOrder) {
-      const [sort, order] = filter.sortAndOrder.split(",");
-      url += `_sort=${sort}&_order=${order}&`;
-    }
-    if (!_.isEmpty(filter.checkedBrands)) {
-      filter.checkedBrands.forEach((brand) => {
-        url += `manufacturer=${brand}&`;
-      });
-    }
-    if (!_.isEmpty(filter.checkedTags)) {
-      filter.checkedTags.forEach((brand) => {
-        url += `tags=${brand}&`;
-      });
-    }
-    if (filter.page) url += `_page=${filter.page}&_limit=16&`;
-
-    return axios.get(url);
+    return axios.get(this.URL, {
+      params: {
+        itemType: filter.type,
+        manufacturer: filter.checkedBrands,
+        tags: filter.checkedTags,
+        _sort: sort,
+        _order: order,
+        _limit: 16,
+        _page: filter.page,
+      },
+    });
   };
 }
 

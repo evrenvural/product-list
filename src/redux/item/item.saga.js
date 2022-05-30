@@ -8,6 +8,7 @@ import {
 import ItemActionTypes from "./item.types";
 import * as itemActions from "./item.actions";
 import ItemService from "./item.services";
+import _ from "lodash";
 
 function* getItems() {
   try {
@@ -34,20 +35,31 @@ function* changeFilter({ payload: { filter } }) {
   const newFilter = {
     page: 1,
   };
-  console.log({ filter });
+
   if (filter.page) newFilter["page"] = filter.page;
-  if (filter.type) newFilter["type"] = filter.type;
-  if (filter.sortAndOrder) newFilter["sortAndOrder"] = filter.sortAndOrder;
-  if (filter.checkedBrands) newFilter["checkedBrands"] = filter.checkedBrands;
-  if (filter.checkedTags) newFilter["checkedTags"] = filter.checkedTags;
+  else if (filter.type) newFilter["type"] = filter.type;
+  else if (filter.sortAndOrder) newFilter["sortAndOrder"] = filter.sortAndOrder;
+  else if (filter.checkedBrands)
+    newFilter["checkedBrands"] = filter.checkedBrands;
+  else if (filter.checkedTags) newFilter["checkedTags"] = filter.checkedTags;
 
   yield put(itemActions.ChangeFilter.success(newFilter));
   yield fork(getItems);
+}
+
+function* addItem({ payload: { item } }) {
+  yield put(itemActions.AddItem.success(item));
+}
+
+function* decreaseItem({ payload: { item } }) {
+  yield put(itemActions.DecreaseItem.success(item));
 }
 
 export default function* itemSaga() {
   yield all([
     takeLatest(REQUEST(ItemActionTypes.GET_ITEMS), getItems),
     takeLatest(REQUEST(ItemActionTypes.CHANGE_FILTER), changeFilter),
+    takeLatest(REQUEST(ItemActionTypes.ADD_ITEM), addItem),
+    takeLatest(REQUEST(ItemActionTypes.DECREASE_ITEM), decreaseItem),
   ]);
 }

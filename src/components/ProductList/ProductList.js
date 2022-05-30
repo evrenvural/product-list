@@ -17,6 +17,7 @@ function ProductList({
   page,
   onTypeFilterChange,
   typeFilterValue,
+  addButtonClicked,
 }) {
   return (
     <div css={style.wrapper}>
@@ -25,7 +26,7 @@ function ProductList({
       <Grid css={style.list}>
         {_.map(list, (item, index) => (
           <Grid.Col key={index} xs={6} sm={4} md={3}>
-            <Card price={item.price} name={item.name} />
+            <Card addButtonClicked={addButtonClicked} item={item} />
           </Grid.Col>
         ))}
       </Grid>
