@@ -3,6 +3,8 @@ import * as utils from "../../../utils/styleUtils";
 
 export const wrapper = css`
   // background-color: ${utils.COLORS.blue};
+  position: relative;
+  height: 235px;
 `;
 
 export const imageContainer = css`
@@ -47,6 +49,10 @@ export const button = css`
   color: ${utils.COLORS.white};
   font-size: 12px;
   padding: 5px;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
   &:hover {
     cursor: pointer;
   }
