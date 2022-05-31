@@ -16,15 +16,18 @@ function SelectItem({
 }) {
   return (
     <div css={style.wrapper}>
-      {_.map(selectedItems, (item, index) => (
-        <Item
-          key={index}
-          decreaseButtonClicked={decreaseButtonClicked}
-          increaseButtonClicked={increaseButtonClicked}
-          item={item}
-        />
-      ))}
-
+      {_.isEmpty(selectedItems) ? (
+        <label css={style.title}>No Items</label>
+      ) : (
+        _.map(selectedItems, (item, index) => (
+          <Item
+            key={index}
+            decreaseButtonClicked={decreaseButtonClicked}
+            increaseButtonClicked={increaseButtonClicked}
+            item={item}
+          />
+        ))
+      )}
       <div css={[style.totalPriceContainer, GLOBAL_STYLE.mt(18)]}>
         <div css={style.totalPrice}>₺{_.round(totalPrice, 2)}</div>
       </div>

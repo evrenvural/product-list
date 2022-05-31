@@ -3,7 +3,7 @@ import ItemActionTypes from "./item.types";
 import _ from "lodash";
 
 const InitialState = {
-  items: [],
+  items: null,
   totalItemCount: 0,
   filter: {
     page: 1,
@@ -15,7 +15,6 @@ const InitialState = {
   selectedItems: [],
   selectedTotalPrice: 0,
   error: null,
-  isLoading: false,
 };
 
 export default function itemReducer(state = InitialState, action = {}) {
@@ -71,7 +70,7 @@ export default function itemReducer(state = InitialState, action = {}) {
       );
       if (item) {
         item.count += 1;
-        state.selectedTotalPrice += item.data.price * item.count;
+        state.selectedTotalPrice += item.data.price;
       } else {
         newSelectedItems.push({
           data: action.payload.item,

@@ -10,10 +10,11 @@ import RadioFilter from "../components/RadioFilter/RadioFilter";
 import CheckboxFilter from "../components/CheckboxFilter/CheckboxFilter";
 import SelectItem from "../components/SelectItem/SelectItem";
 import ProductList from "../components/ProductList/ProductList";
-import { Container, Grid } from "@mantine/core";
+import { Container, Grid, Loader } from "@mantine/core";
 import { GLOBAL_STYLE } from "../utils/styleUtils";
 import COMPANIES from "../utils/companies";
 import TAGS from "../utils/tags";
+import { COLORS } from "../utils/styleUtils";
 import _ from "lodash";
 
 function Home() {
@@ -73,21 +74,29 @@ function Home() {
           />
         </Grid.Col>
         <Grid.Col md={12} lg={6}>
-          <ProductList
-            onPageChanged={(selectedPage) =>
-              dispatch(itemActions.ChangeFilter.request({ page: selectedPage }))
-            }
-            page={filter.page}
-            list={items}
-            totalListLength={totalItemCount}
-            onTypeFilterChange={(selectedType) =>
-              dispatch(itemActions.ChangeFilter.request({ type: selectedType }))
-            }
-            typeFilterValue={filter.type}
-            addButtonClicked={(item) =>
-              dispatch(itemActions.AddItem.request(item))
-            }
-          />
+          {_.isNil(items) ? (
+            <Loader color={COLORS.blue} />
+          ) : (
+            <ProductList
+              onPageChanged={(selectedPage) =>
+                dispatch(
+                  itemActions.ChangeFilter.request({ page: selectedPage })
+                )
+              }
+              page={filter.page}
+              list={items}
+              totalListLength={totalItemCount}
+              onTypeFilterChange={(selectedType) =>
+                dispatch(
+                  itemActions.ChangeFilter.request({ type: selectedType })
+                )
+              }
+              typeFilterValue={filter.type}
+              addButtonClicked={(item) =>
+                dispatch(itemActions.AddItem.request(item))
+              }
+            />
+          )}
         </Grid.Col>
         <Grid.Col md={12} lg={3}>
           <SelectItem

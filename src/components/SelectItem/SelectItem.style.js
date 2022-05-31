@@ -12,6 +12,12 @@ export const totalPriceContainer = css`
   justify-content: flex-end;
 `;
 
+export const title = css`
+  font-size: 13px;
+  color: ${utils.COLORS.gray};
+  font-weight: ${utils.FONT_WEIGHT.bold};
+`;
+
 export const totalPrice = css`
   border: 2px solid ${utils.COLORS.blue};
   display: flex;
